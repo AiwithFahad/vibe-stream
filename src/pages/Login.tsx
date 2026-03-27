@@ -102,6 +102,12 @@ const Login = () => {
           <button className="w-full rounded-lg border border-border py-3 text-sm font-medium transition-colors hover:bg-secondary">
             Continue with Google
           </button>
+
+          <div className="mt-4 rounded-lg bg-muted/50 p-3 text-xs text-muted-foreground">
+            <p className="font-medium mb-1">Demo Credentials:</p>
+            <p>Email: <span className="font-mono text-foreground">demo@instavibe.app</span></p>
+            <p>Password: <span className="font-mono text-foreground">demo1234</span></p>
+          </div>
         </div>
 
         <div className="mt-4 rounded-xl border border-border bg-card p-4 text-center text-sm">
