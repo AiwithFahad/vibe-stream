@@ -127,10 +127,19 @@ export const notifications: Notification[] = [
   { id: 'n5', type: 'like', user: { id: '5', username: 'beach_vibes', avatar: avatarUrl('luna') }, content: 'liked your post', createdAt: '5h', read: true, postImage: '/post5.jpg' },
 ];
 
-export const suggestedUsers = users.filter(u => !u.isFollowing).slice(0, 3);
+export const suggestedUsers = users.filter(u => !u.isFollowing).concat(users.filter(u => u.isFollowing)).slice(0, 5);
 
 export const explorePostImages = [
-  '/post1.jpg', '/post2.jpg', '/post3.jpg',
-  '/post4.jpg', '/post5.jpg', '/post6.jpg',
-  '/post1.jpg', '/post2.jpg', '/post3.jpg',
+  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=400&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1493770348161-369560ae357d?w=400&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=400&fit=crop',
 ];
