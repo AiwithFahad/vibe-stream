@@ -108,7 +108,7 @@ const Messages = () => {
             <button onClick={() => setSelectedChat(null)}><ChevronLeft size={24} /></button>
             <div className="relative">
               <img src={selectedChat.user.avatar} alt="" className="h-8 w-8 rounded-full" />
-              {selectedChat.online && <div className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-green-500 border-2 border-card" />}
+              {selectedChat.online && <div className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-emerald-500 border-2 border-card" />}
             </div>
             <div className="flex-1">
               <p className="text-sm font-semibold">{selectedChat.user.username}</p>

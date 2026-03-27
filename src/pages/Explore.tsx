@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, Heart, MessageCircle, X } from 'lucide-react';
+import { Search, Heart, MessageCircle, X, Send } from 'lucide-react';
 import BottomNav from '@/components/BottomNav';
 import DesktopSidebar from '@/components/DesktopSidebar';
 import { explorePostImages, posts as mockPosts, users, suggestedUsers } from '@/data/mockData';
