@@ -42,7 +42,7 @@ const Login = () => {
         is_private: false,
       }));
       setLoading(false);
-      navigate('/');
+      window.location.href = '/';
       return;
     }
 
