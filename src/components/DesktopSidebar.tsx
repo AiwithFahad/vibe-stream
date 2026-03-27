@@ -1,5 +1,7 @@
-import { Home, Search, PlusSquare, Heart, User, MessageCircle, Menu } from 'lucide-react';
+import { Home, Search, PlusSquare, Heart, User, MessageCircle, Menu, LogOut } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
 
 const navItems = [
   { icon: Home, path: '/', label: 'Home' },
@@ -10,9 +12,28 @@ const navItems = [
   { icon: User, path: '/profile', label: 'Profile' },
 ];
 
-const DesktopSidebar = () => {
+interface DesktopSidebarProps {
+  onCreatePost?: () => void;
+}
+
+const DesktopSidebar = ({ onCreatePost }: DesktopSidebarProps) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { signOut } = useAuth();
+  const [showMore, setShowMore] = useState(false);
+
+  const handleNav = (path: string) => {
+    if (path === '/create' && onCreatePost) {
+      onCreatePost();
+      return;
+    }
+    navigate(path);
+  };
+
+  const handleLogout = async () => {
+    await signOut();
+    navigate('/login');
+  };
 
   return (
     <aside className="fixed left-0 top-0 hidden h-screen w-[72px] flex-col items-center border-r border-border bg-card py-8 md:flex xl:w-[245px]">
@@ -27,7 +48,7 @@ const DesktopSidebar = () => {
           return (
             <button
               key={path}
-              onClick={() => navigate(path)}
+              onClick={() => handleNav(path)}
               className={`flex items-center gap-4 rounded-lg px-3 py-3 transition-colors hover:bg-secondary ${
                 isActive ? 'font-semibold' : 'text-muted-foreground'
               }`}
@@ -43,10 +64,25 @@ const DesktopSidebar = () => {
         })}
       </nav>
 
-      <button className="flex items-center gap-4 rounded-lg px-3 py-3 text-muted-foreground hover:bg-secondary w-full mx-3">
-        <Menu size={24} strokeWidth={1.5} />
-        <span className="hidden xl:inline text-sm">More</span>
-      </button>
+      <div className="w-full px-3 relative">
+        <button
+          onClick={() => setShowMore(!showMore)}
+          className="flex items-center gap-4 rounded-lg px-3 py-3 text-muted-foreground hover:bg-secondary w-full"
+        >
+          <Menu size={24} strokeWidth={1.5} />
+          <span className="hidden xl:inline text-sm">More</span>
+        </button>
+        {showMore && (
+          <div className="absolute bottom-full left-3 mb-2 rounded-lg border border-border bg-card shadow-lg py-1 min-w-[180px]">
+            <button
+              onClick={handleLogout}
+              className="flex w-full items-center gap-3 px-4 py-3 text-sm hover:bg-secondary text-destructive"
+            >
+              <LogOut size={18} /> Log out
+            </button>
+          </div>
+        )}
+      </div>
     </aside>
   );
 };

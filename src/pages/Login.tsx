@@ -1,28 +1,42 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, Loader2 } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Login = () => {
   const navigate = useNavigate();
+  const { signIn, signUp, user } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Redirect if already logged in
+  if (user) {
+    navigate('/', { replace: true });
+    return null;
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Dummy credentials
+    setLoading(true);
+    setError('');
+
     if (isLogin) {
-      if (email === 'demo@instavibe.app' && password === 'demo1234') {
-        navigate('/');
-      } else {
-        setError('Invalid credentials. Use demo@instavibe.app / demo1234');
-      }
+      const { error } = await signIn(email, password);
+      if (error) setError(error.message);
+      else navigate('/');
     } else {
-      navigate('/');
+      if (!username.trim()) { setError('Username is required'); setLoading(false); return; }
+      const { error } = await signUp(email, password, username);
+      if (error) setError(error.message);
+      else navigate('/');
     }
+    setLoading(false);
   };
 
   return (
@@ -43,6 +57,8 @@ const Login = () => {
               <input
                 type="text"
                 placeholder="Username"
+                value={username}
+                onChange={e => { setUsername(e.target.value); setError(''); }}
                 className="w-full rounded-lg bg-secondary px-4 py-3 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
               />
             )}
@@ -70,9 +86,10 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full rounded-lg bg-accent py-3 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"
+              disabled={loading}
+              className="w-full rounded-lg bg-accent py-3 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90 disabled:opacity-50 flex items-center justify-center"
             >
-              {isLogin ? 'Log In' : 'Sign Up'}
+              {loading ? <Loader2 size={18} className="animate-spin" /> : isLogin ? 'Log In' : 'Sign Up'}
             </button>
           </form>
 
@@ -93,10 +110,6 @@ const Login = () => {
             {isLogin ? 'Sign Up' : 'Log In'}
           </button>
         </div>
-
-        <p className="mt-4 text-center text-xs text-muted-foreground">
-          Demo: demo@instavibe.app / demo1234
-        </p>
       </motion.div>
     </div>
   );

@@ -10,9 +10,21 @@ const navItems = [
   { icon: User, path: '/profile', label: 'Profile' },
 ];
 
-const BottomNav = () => {
+interface BottomNavProps {
+  onCreatePost?: () => void;
+}
+
+const BottomNav = ({ onCreatePost }: BottomNavProps) => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const handleNav = (path: string) => {
+    if (path === '/create' && onCreatePost) {
+      onCreatePost();
+      return;
+    }
+    navigate(path);
+  };
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-card/80 backdrop-blur-xl md:hidden">
@@ -22,7 +34,7 @@ const BottomNav = () => {
           return (
             <button
               key={path}
-              onClick={() => navigate(path)}
+              onClick={() => handleNav(path)}
               className="relative flex flex-col items-center gap-0.5 p-2"
               aria-label={label}
             >
