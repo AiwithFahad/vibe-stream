@@ -9,6 +9,8 @@ import Explore from "./pages/Explore";
 import Profile from "./pages/Profile";
 import Notifications from "./pages/Notifications";
 import Messages from "./pages/Messages";
+import Reels from "./pages/Reels";
+import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 
