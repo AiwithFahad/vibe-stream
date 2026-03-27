@@ -9,6 +9,8 @@ import Explore from "./pages/Explore";
 import Profile from "./pages/Profile";
 import Notifications from "./pages/Notifications";
 import Messages from "./pages/Messages";
+import Reels from "./pages/Reels";
+import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 
@@ -30,6 +32,8 @@ const AppRoutes = () => (
     <Route path="/profile/:userId" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
     <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
     <Route path="/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
+    <Route path="/reels" element={<ProtectedRoute><Reels /></ProtectedRoute>} />
+    <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
     <Route path="*" element={<NotFound />} />
   </Routes>
 );

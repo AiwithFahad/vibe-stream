@@ -1,4 +1,4 @@
-import { Home, Search, PlusSquare, Heart, User } from 'lucide-react';
+import { Home, Search, PlusSquare, Film, User } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -6,7 +6,7 @@ const navItems = [
   { icon: Home, path: '/', label: 'Home' },
   { icon: Search, path: '/explore', label: 'Explore' },
   { icon: PlusSquare, path: '/create', label: 'Create' },
-  { icon: Heart, path: '/notifications', label: 'Notifications' },
+  { icon: Film, path: '/reels', label: 'Reels' },
   { icon: User, path: '/profile', label: 'Profile' },
 ];
 

@@ -1,14 +1,17 @@
-import { Home, Search, PlusSquare, Heart, User, MessageCircle, Menu, LogOut } from 'lucide-react';
+import { Home, Search, PlusSquare, Heart, User, MessageCircle, Menu, LogOut, Film, LayoutDashboard, Settings } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
+import SettingsModal from '@/components/SettingsModal';
 
 const navItems = [
   { icon: Home, path: '/', label: 'Home' },
   { icon: Search, path: '/explore', label: 'Explore' },
+  { icon: Film, path: '/reels', label: 'Reels' },
   { icon: MessageCircle, path: '/messages', label: 'Messages' },
   { icon: PlusSquare, path: '/create', label: 'Create' },
   { icon: Heart, path: '/notifications', label: 'Notifications' },
+  { icon: LayoutDashboard, path: '/dashboard', label: 'Dashboard' },
   { icon: User, path: '/profile', label: 'Profile' },
 ];
 
@@ -21,6 +24,7 @@ const DesktopSidebar = ({ onCreatePost }: DesktopSidebarProps) => {
   const navigate = useNavigate();
   const { signOut } = useAuth();
   const [showMore, setShowMore] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   const handleNav = (path: string) => {
     if (path === '/create' && onCreatePost) {
@@ -75,6 +79,12 @@ const DesktopSidebar = ({ onCreatePost }: DesktopSidebarProps) => {
         {showMore && (
           <div className="absolute bottom-full left-3 mb-2 rounded-lg border border-border bg-card shadow-lg py-1 min-w-[180px]">
             <button
+              onClick={() => { setSettingsOpen(true); setShowMore(false); }}
+              className="flex w-full items-center gap-3 px-4 py-3 text-sm hover:bg-secondary"
+            >
+              <Settings size={18} /> Settings
+            </button>
+            <button
               onClick={handleLogout}
               className="flex w-full items-center gap-3 px-4 py-3 text-sm hover:bg-secondary text-destructive"
             >
@@ -83,6 +93,7 @@ const DesktopSidebar = ({ onCreatePost }: DesktopSidebarProps) => {
           </div>
         )}
       </div>
+      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} />
     </aside>
   );
 };
