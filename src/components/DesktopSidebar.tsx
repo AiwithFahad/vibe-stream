@@ -27,10 +27,6 @@ const DesktopSidebar = ({ onCreatePost }: DesktopSidebarProps) => {
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   const handleNav = (path: string) => {
-    if (path === '/create' && onCreatePost) {
-      onCreatePost();
-      return;
-    }
     navigate(path);
   };
 
