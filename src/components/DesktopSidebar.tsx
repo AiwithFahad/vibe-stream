@@ -1,14 +1,17 @@
-import { Home, Search, PlusSquare, Heart, User, MessageCircle, Menu, LogOut } from 'lucide-react';
+import { Home, Search, PlusSquare, Heart, User, MessageCircle, Menu, LogOut, Film, LayoutDashboard, Settings } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
+import SettingsModal from '@/components/SettingsModal';
 
 const navItems = [
   { icon: Home, path: '/', label: 'Home' },
   { icon: Search, path: '/explore', label: 'Explore' },
+  { icon: Film, path: '/reels', label: 'Reels' },
   { icon: MessageCircle, path: '/messages', label: 'Messages' },
   { icon: PlusSquare, path: '/create', label: 'Create' },
   { icon: Heart, path: '/notifications', label: 'Notifications' },
+  { icon: LayoutDashboard, path: '/dashboard', label: 'Dashboard' },
   { icon: User, path: '/profile', label: 'Profile' },
 ];
 
