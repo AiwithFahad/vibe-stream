@@ -32,7 +32,7 @@ const Login = () => {
     // Allow demo credentials to bypass backend auth
     if (isLogin && email === DEMO_EMAIL && password === DEMO_PASSWORD) {
       localStorage.setItem('instavibe_demo_user', JSON.stringify({
-        id: 'demo-user-001',
+        id: '00000000-0000-0000-0000-000000000001',
         email: DEMO_EMAIL,
         username: 'demo_user',
         display_name: 'Demo User',
