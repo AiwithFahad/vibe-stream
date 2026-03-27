@@ -24,6 +24,7 @@ const DesktopSidebar = ({ onCreatePost }: DesktopSidebarProps) => {
   const navigate = useNavigate();
   const { signOut } = useAuth();
   const [showMore, setShowMore] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   const handleNav = (path: string) => {
     if (path === '/create' && onCreatePost) {
