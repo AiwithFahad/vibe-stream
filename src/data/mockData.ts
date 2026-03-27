@@ -120,11 +120,11 @@ export const posts: Post[] = [
 ];
 
 export const notifications: Notification[] = [
-  { id: 'n1', type: 'like', user: { id: '1', username: 'wanderlust_sam', avatar: avatarUrl('sam') }, content: 'liked your post', createdAt: '2m', read: false, postImage: '/post1.jpg' },
+  { id: 'n1', type: 'like', user: { id: '1', username: 'wanderlust_sam', avatar: avatarUrl('sam') }, content: 'liked your post', createdAt: '2m', read: false, postImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=100&h=100&fit=crop' },
   { id: 'n2', type: 'follow', user: { id: '3', username: 'peak_seeker', avatar: avatarUrl('alex') }, content: 'started following you', createdAt: '15m', read: false },
-  { id: 'n3', type: 'comment', user: { id: '2', username: 'coffee_culture', avatar: avatarUrl('maya') }, content: 'commented: "Love this! 😍"', createdAt: '1h', read: true, postImage: '/post2.jpg' },
+  { id: 'n3', type: 'comment', user: { id: '2', username: 'coffee_culture', avatar: avatarUrl('maya') }, content: 'commented: "Love this! 😍"', createdAt: '1h', read: true, postImage: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=100&h=100&fit=crop' },
   { id: 'n4', type: 'mention', user: { id: '4', username: 'foodie_jin', avatar: avatarUrl('jin') }, content: 'mentioned you in a comment', createdAt: '3h', read: true },
-  { id: 'n5', type: 'like', user: { id: '5', username: 'beach_vibes', avatar: avatarUrl('luna') }, content: 'liked your post', createdAt: '5h', read: true, postImage: '/post5.jpg' },
+  { id: 'n5', type: 'like', user: { id: '5', username: 'beach_vibes', avatar: avatarUrl('luna') }, content: 'liked your post', createdAt: '5h', read: true, postImage: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=100&h=100&fit=crop' },
 ];
 
 export const suggestedUsers = users.filter(u => !u.isFollowing).concat(users.filter(u => u.isFollowing)).slice(0, 5);
