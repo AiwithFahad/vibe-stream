@@ -51,6 +51,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
+    // Check for demo user in localStorage
+    const demoUser = localStorage.getItem('instavibe_demo_user');
+    if (demoUser) {
+      const parsed = JSON.parse(demoUser);
+      setUser({ id: parsed.id, email: parsed.email } as User);
+      setProfile(parsed as Profile);
+      setLoading(false);
+      return;
+    }
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
