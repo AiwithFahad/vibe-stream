@@ -32,6 +32,8 @@ const AppRoutes = () => (
     <Route path="/profile/:userId" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
     <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
     <Route path="/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
+    <Route path="/reels" element={<ProtectedRoute><Reels /></ProtectedRoute>} />
+    <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
     <Route path="*" element={<NotFound />} />
   </Routes>
 );
