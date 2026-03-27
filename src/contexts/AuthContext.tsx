@@ -100,6 +100,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signOut = async () => {
+    localStorage.removeItem('instavibe_demo_user');
     await supabase.auth.signOut();
     setUser(null);
     setSession(null);
