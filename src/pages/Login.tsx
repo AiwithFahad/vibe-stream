@@ -21,10 +21,30 @@ const Login = () => {
     return null;
   }
 
+  const DEMO_EMAIL = 'demo@instavibe.app';
+  const DEMO_PASSWORD = 'demo1234';
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
+
+    // Allow demo credentials to bypass backend auth
+    if (isLogin && email === DEMO_EMAIL && password === DEMO_PASSWORD) {
+      localStorage.setItem('instavibe_demo_user', JSON.stringify({
+        id: 'demo-user-001',
+        email: DEMO_EMAIL,
+        username: 'demo_user',
+        display_name: 'Demo User',
+        avatar_url: null,
+        bio: 'This is a demo account',
+        website: '',
+        is_private: false,
+      }));
+      setLoading(false);
+      navigate('/');
+      return;
+    }
 
     if (isLogin) {
       const { error } = await signIn(email, password);
